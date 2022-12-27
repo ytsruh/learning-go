@@ -1,9 +1,7 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main()  {
-	fmt.Println("End of the exercise")
+	fmt.Println("players")
 }
