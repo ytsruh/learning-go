@@ -22,6 +22,6 @@ func sayHello(str string) string {
 }
 
 // use reflect package to check the type. interface type can be when unknown
-func printType (v interface{}) {
+func printType(v interface{}) {
 	fmt.Println(reflect.TypeOf(v))
 }

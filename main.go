@@ -4,47 +4,47 @@ import (
 	"fmt"
 )
 
-func shorthandVariables() {
-	// Type 1 - typically used outside of functions
-	var s,t = "hello" ,"world"
-	// Type 2 - typically used outside of functions
-	var ( 
-		x = "testing new"
-		z = "variables"
-	)
-	// Type 3 - typically used inside of functions
-	u := "new type of variables"
-	//Run main
-	fmt.Println(s + " " + t)
-	fmt.Println(x + " " + z)
-	fmt.Println(u)
+func getPrizes() (string, int){
+	i := "goldfish"
+	x := 3
+
+	return i, x
 }
 
-var glob string = "Globally scoped variable"
-
-func lexicalScope(){
-	fmt.Println("Print global variable : " + glob)
-	a := true
-	if a {
-		fmt.Println("Printing 'a' variable from outer block : ", a)
-		i:= 673
-		if a != false {
-			fmt.Println("Printing 'i' variable from outer block : ", i)
-		}
+// This function will accept any number of integers using the ... syntax
+func sumNumbers(numbers ...int)int  {
+	total := 0
+	for _ , number :=range numbers{
+		total += number
 	}
+	return total
 }
 
-func pointer(){
-	x := "test variable"
-	// Use & before a variable to get the pointer or the location variable is held in memory
-	fmt.Println(&x)
-	// Variables passed into a function will have a different memory location than the original as a new variable is created
+// Example of a recursive function that calls itself until a condition is met
+func feedMe(portion int, eaten int)int{
+	eaten = portion + eaten
+	if eaten >= 5 {
+		fmt.Println("I'm full! I've eaten", eaten)
+		return eaten
+	}
+	fmt.Println("I'm still hungry! I've eaten", eaten)
+	return feedMe(portion, eaten)
 }
 
-
+func anotherFunction(f func() string) string{
+	return f()
+}
 
 func main()  {
-	shorthandVariables()
-	lexicalScope()
-	pointer()
+	fmt.Println(sumNumbers(10,20,33))
+	fmt.Println(feedMe(1,2))
+	fn := func(){
+		fmt.Println("Function as value")
+	}
+	fn()
+	x := func() string {
+		return "This is returned from function called x"
+	}
+
+	fmt.Println(anotherFunction(x))
 }
