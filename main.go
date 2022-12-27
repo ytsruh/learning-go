@@ -2,44 +2,49 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 )
 
-var a int = 654
-// Go booleans are false unless decalred true
-var b bool
-// Floats can be either 32 or 64 bit
-var c float64 = 2.6541
-var d complex128 = 4 + 1i
-var e string = "Australia" 
-
-func addition(x int, y int) int {
-	return x + y
+func shorthandVariables() {
+	// Type 1 - typically used outside of functions
+	var s,t = "hello" ,"world"
+	// Type 2 - typically used outside of functions
+	var ( 
+		x = "testing new"
+		z = "variables"
+	)
+	// Type 3 - typically used inside of functions
+	u := "new type of variables"
+	//Run main
+	fmt.Println(s + " " + t)
+	fmt.Println(x + " " + z)
+	fmt.Println(u)
 }
 
-func sayHello(str string) string {
-	return "Hello " + str
+var glob string = "Globally scoped variable"
+
+func lexicalScope(){
+	fmt.Println("Print global variable : " + glob)
+	a := true
+	if a {
+		fmt.Println("Printing 'a' variable from outer block : ", a)
+		i:= 673
+		if a != false {
+			fmt.Println("Printing 'i' variable from outer block : ", i)
+		}
+	}
 }
 
-// use reflect package to check the type
-func checkType (v any) {
-	fmt.Println(reflect.TypeOf(v))
+func pointer(){
+	x := "test variable"
+	// Use & before a variable to get the pointer or the location variable is held in memory
+	fmt.Println(&x)
+	// Variables passed into a function will have a different memory location than the original as a new variable is created
 }
+
+
 
 func main()  {
-	// fmt.Println(sayHello("world"))
-	// fmt.Println(addition(1,4))
-	// fmt.Printf("d for Integer: %d\n", a)
-	// fmt.Printf("6d for Integer: %6d\n", a)
-	// fmt.Printf("t for Boolean: %t\n", b)
-	// fmt.Printf("g for Float: %g\n", c)
-	// fmt.Printf("e for Scientific Notation: %e\n", d)
-	// fmt.Printf("E for Scientific Notation: %E\n", d)
-	// fmt.Printf("s for String: %s\n", e)
-	// fmt.Printf("G for Complex: %G\n", c)
-	// fmt.Printf("15s String: %15s\n", e)
-	// fmt.Printf("-10s String: %-10s\n",e)
-	t:= fmt.Sprintf("Print from right: %[3]d %[2]d %[1]d", 11, 22, 33)
-	fmt.Println(t)	
-	checkType(a)
+	shorthandVariables()
+	lexicalScope()
+	pointer()
 }
