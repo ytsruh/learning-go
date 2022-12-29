@@ -1,10 +1,10 @@
-package main
+package lessons
 
 import (
 	"fmt"
 )
 
-func flow()  {
+func Flow()  {
 	a := 5
 	// if-else & else if
 	if a == 3 {

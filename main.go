@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"learning/lessons"
+)
 
 func main()  {
-	fmt.Println("players")
+	sum := lessons.Addition(7,8)
+	fmt.Println(sum)
+	
 }

@@ -1,4 +1,4 @@
-package main
+package lessons
 
 import (
 	"fmt"
@@ -13,15 +13,15 @@ var c float64 = 2.6541
 var d complex128 = 4 + 1i
 var e string = "Australia" 
 
-func addition(x int, y int) int {
+func Addition(x int, y int) int {
 	return x + y
 }
 
-func sayHello(str string) string {
+func SayHello(str string) string {
 	return "Hello " + str
 }
 
 // use reflect package to check the type. interface type can be when unknown
-func printType(v interface{}) {
+func PrintType(v interface{}) {
 	fmt.Println(reflect.TypeOf(v))
 }

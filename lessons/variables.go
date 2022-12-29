@@ -1,10 +1,10 @@
-package main
+package lessons
 
 import (
 	"fmt"
 )
 
-func shorthandVariables() {
+func ShorthandVariables() {
 	// Type 1 - typically used outside of functions
 	var s,t = "hello" ,"world"
 	// Type 2 - typically used outside of functions
@@ -22,7 +22,7 @@ func shorthandVariables() {
 
 var glob string = "Globally scoped variable"
 
-func lexicalScope(){
+func LexicalScope(){
 	fmt.Println("Print global variable : " + glob)
 	a := true
 	if a {
@@ -34,7 +34,7 @@ func lexicalScope(){
 	}
 }
 
-func pointer(){
+func Pointer(){
 	x := "test variable"
 	// Use & before a variable to get the pointer or the location variable is held in memory
 	fmt.Println(&x)
