@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"learning/lessons"
+	// Import local packages & assign a name to them
+	types "learning/lessons/types"
 )
 
 func main()  {
-	sum := lessons.Addition(7,8)
+	sum := types.Addition(7,8)
 	fmt.Println(sum)
-	
 }
