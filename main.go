@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	lessons.MakeFile()
+	lessons.Extract()
 }
