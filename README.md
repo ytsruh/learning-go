@@ -1,3 +1,8 @@
 # Learning Go
 
-Exercises from "Sam's Teach Yourself Go"
+A monorepo of projects created whilst learning go
+
+## Repositories
+
+1. Lessons = Code from book called "Sam's Teach Yourself Go"
+2. JWT Auth = Simple JWT auth server using Fiber

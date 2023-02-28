@@ -1,10 +1,10 @@
 package main
 
 import (
-	"learning/lessons"
+	"learning/jwtauth"
 )
 
 func main() {
-	lessons.Ticker()
+	jwtauth.RunServer()
 
 }
