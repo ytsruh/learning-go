@@ -5,11 +5,11 @@ import (
 )
 
 func RunServer() {
+	ConnectDb()
+
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
+	SetupRoutes(app)
 
 	app.Listen(":3000")
 }
