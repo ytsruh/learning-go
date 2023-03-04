@@ -1,7 +1,6 @@
 package jwtauth
 
 import (
-	"log"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -109,7 +108,6 @@ func SetupRoutes(app *fiber.App) {
 		})
 
 		if err != nil {
-			log.Println(err)
 			c.Status(fiber.StatusUnauthorized)
 			return c.JSON(fiber.Map{
 				"message": "unauthenticated",
@@ -131,4 +129,17 @@ func SetupRoutes(app *fiber.App) {
 		})
 
 	})
+
+	app.Get("/logout", func(c *fiber.Ctx) error {
+		cookie := fiber.Cookie{
+			Name:    "jwt",
+			Value:   "",
+			Expires: time.Now().Add(-time.Hour),
+		}
+		c.Cookie(&cookie)
+		return c.JSON(fiber.Map{
+			"message": "success",
+		})
+	})
+
 }
