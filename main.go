@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	todo.RootCmd.Execute()
+	todo.RunTodo()
 }
