@@ -8,3 +8,4 @@ A monorepo of projects created whilst learning go
 2. JWT Auth = Simple JWT auth server using Fiber
 3. CLI Todo List = Simple CLI app built using Cobra
 4. Sitemap = A sitemap generator built in Go
+5. Normaliser = Utility functions to normalise phone numbers
