@@ -2,6 +2,7 @@ package todo
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 
 	"github.com/spf13/cobra"
@@ -20,7 +21,25 @@ var doCmd = &cobra.Command{
 				ids = append(ids, id)
 			}
 		}
-		fmt.Println(ids)
+		tasks, err := ReadTasks()
+		if err != nil {
+			fmt.Println("Uh oh. Something went wrong:", err)
+			os.Exit(1)
+		}
+		for _, id := range ids {
+			if id <= 0 || id > len(tasks) {
+				fmt.Println("Invalid task number")
+				continue
+			}
+			task := tasks[id-1]
+			err := DeleteTask(task.Key)
+			if err != nil {
+				fmt.Printf("Failed to mark \"%d\" as completed. Error %s\n", id, err)
+				os.Exit(1)
+			} else {
+				fmt.Printf("Marked \"%d\" as completed.\n", id)
+			}
+		}
 	},
 }
 
