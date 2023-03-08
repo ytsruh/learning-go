@@ -1,9 +1,14 @@
 package main
 
 import (
-	"learning/todo"
+	"learning/sitemap"
+	"log"
 )
 
 func main() {
-	todo.RunTodo()
+	success, err := sitemap.Generate("https://www.ytsruh.com", 2)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Printf("Success: %t", success)
 }

@@ -7,3 +7,4 @@ A monorepo of projects created whilst learning go
 1. Lessons = Code from book called "Sam's Teach Yourself Go"
 2. JWT Auth = Simple JWT auth server using Fiber
 3. CLI Todo List = Simple CLI app built using Cobra
+4. Sitemap = A sitemap generator built in Go
