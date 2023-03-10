@@ -1,4 +1,4 @@
-package normalise
+package utility
 
 import (
 	"bytes"
