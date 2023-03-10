@@ -1,11 +1,11 @@
 package main
 
 import (
-	"learning/normalise"
+	"learning/utility"
 	"log"
 )
 
 func main() {
-	result := normalise.PhoneRegex("123 456 7891")
-	log.Println(result)
+	ciphered := utility.CaesarCipher("testing-hello", 2)
+	log.Println(ciphered)
 }
