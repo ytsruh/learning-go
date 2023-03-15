@@ -9,3 +9,4 @@ A monorepo of projects created whilst learning go
 3. CLI Todo List = Simple CLI app built using Cobra
 4. Sitemap = A sitemap generator built in Go
 5. Utility = Functions to normalise numbers or cipher string
+6. Reverse Proxy = A very simple reverse proxy using round robin selection

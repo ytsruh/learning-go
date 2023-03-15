@@ -1,11 +1,7 @@
 package main
 
-import (
-	"learning/utility"
-	"log"
-)
+import "learning/proxy"
 
 func main() {
-	ciphered := utility.CaesarCipher("testing-hello", 2)
-	log.Println(ciphered)
+	proxy.RunReverseProxy()
 }
