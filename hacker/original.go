@@ -63,6 +63,10 @@ func handler(numStories int, tpl *template.Template) http.HandlerFunc {
 	})
 }
 
+/*
+	Shared code
+*/
+
 func isStoryLink(item item) bool {
 	return item.Type == "story" && item.URL != ""
 }

@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	hacker.RunOriginal()
+	hacker.Run30Stories()
 }
