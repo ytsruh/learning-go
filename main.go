@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	hacker.Run30Stories()
+	hacker.RunCacheWithMutex()
 }
