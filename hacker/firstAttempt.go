@@ -37,11 +37,11 @@ func handlerFirst(numStories int, tpl *template.Template) http.HandlerFunc {
 		}
 		data := templateData{
 			Stories: stories,
-			Time:    time.Now().Sub(start),
+			Time:    time.Since(start),
 		}
 		err = tpl.Execute(w, data)
 		if err != nil {
-			http.Error(w, "Failed to process the template", http.StatusInternalServerError)
+			http.Error(w, "failed to process the template", http.StatusInternalServerError)
 			return
 		}
 	})
@@ -51,7 +51,7 @@ func getTopStoriesFirst(numStories int) ([]item, error) {
 	var client hn.Client
 	ids, err := client.TopItems()
 	if err != nil {
-		return nil, errors.New("Failed to load top stories")
+		return nil, errors.New("failed to load top stories")
 	}
 	var stories []item
 	for _, id := range ids {
