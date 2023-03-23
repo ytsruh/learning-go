@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	hacker.RunCacheWithMutex()
+	hacker.RunBetterCache()
 }

@@ -22,11 +22,17 @@ func RunCache() {
 	flag.Parse()
 
 	tpl := template.Must(template.ParseFiles("./hacker/index.html"))
-
+	http.HandleFunc("/favicon.ico", favicon)
 	http.HandleFunc("/", handlerCache(numStories, tpl))
 
 	// Start the server
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
+}
+
+func favicon(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "image/x-icon")
+	w.Header().Set("Cache-Control", "public, max-age=7776000")
+	fmt.Fprintln(w, "data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=")
 }
 
 func RunCacheWithMutex() {
@@ -37,7 +43,7 @@ func RunCacheWithMutex() {
 	flag.Parse()
 
 	tpl := template.Must(template.ParseFiles("./hacker/index.html"))
-
+	http.HandleFunc("/favicon.ico", favicon)
 	http.HandleFunc("/", handlerCacheWithMutex(numStories, tpl))
 
 	// Start the server
@@ -101,7 +107,7 @@ func getCachedStories(numStories int) ([]item, error) {
 		return nil, err
 	}
 	cache = stories
-	cacheExpiration = time.Now().Add(1 * time.Second)
+	cacheExpiration = time.Now().Add(100 * time.Second)
 	return cache, nil
 }
 
@@ -118,7 +124,7 @@ func getCachedStoriesWithMutex(numStories int) ([]item, error) {
 		return nil, err
 	}
 	cache = stories
-	cacheExpiration = time.Now().Add(1 * time.Second)
+	cacheExpiration = time.Now().Add(100 * time.Second)
 	return cache, nil
 }
 
