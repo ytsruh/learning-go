@@ -15,10 +15,10 @@ var availableTopics = map[string]string{
 }
 
 func pricePublisher(broker *Broker) {
-	topicKeys := make([]string, 0, len(availableTopics))
+	//topicKeys := make([]string, 0, len(availableTopics))
 	topicValues := make([]string, 0, len(availableTopics))
-	for k, v := range availableTopics {
-		topicKeys = append(topicKeys, k)
+	for _, v := range availableTopics {
+		//topicKeys = append(topicKeys, k)
 		topicValues = append(topicValues, v)
 	}
 	for {
