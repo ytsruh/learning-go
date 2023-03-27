@@ -1,9 +1,9 @@
 package main
 
 import (
-	"learning/hacker"
+	"learning/pubsub"
 )
 
 func main() {
-	hacker.RunBetterCache()
+	pubsub.Run()
 }
