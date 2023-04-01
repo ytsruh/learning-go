@@ -11,3 +11,5 @@ A monorepo of projects created whilst learning go
 5. Utility = Functions to normalise numbers or cipher string
 6. Reverse Proxy = A very simple reverse proxy using round robin selection
 7. Hacker News = Adding concurrency & caching to existing application
+8. PubSub = A simple PubSub server
+9. Recover = HTTP middleware to recover from a panic

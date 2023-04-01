@@ -1,9 +1,7 @@
 package main
 
-import (
-	"learning/pubsub"
-)
+import "learning/recover"
 
 func main() {
-	pubsub.Run()
+	recover.RunRecover()
 }
