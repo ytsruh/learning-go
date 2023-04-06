@@ -1,8 +1,10 @@
 package recover
 
 import (
+	"bufio"
 	"fmt"
 	"log"
+	"net"
 	"net/http"
 	"runtime/debug"
 )
@@ -45,6 +47,22 @@ type responseWriter struct {
 func (rw *responseWriter) Write(b []byte) (int, error) {
 	rw.writes = append(rw.writes, b)
 	return len(b), nil
+}
+
+func (rw *responseWriter) Hijack() (net.Conn, *bufio.ReadWriter, error) {
+	hijacker, ok := rw.ResponseWriter.(http.Hijacker) // .() is a type assertion
+	if !ok {
+		return nil, nil, fmt.Errorf("the response writer does not support the Hijacker interface")
+	}
+	return hijacker.Hijack()
+}
+
+func (rw *responseWriter) Flush() {
+	flusher, ok := rw.ResponseWriter.(http.Flusher)
+	if !ok {
+		return
+	}
+	flusher.Flush()
 }
 
 func (rw *responseWriter) flush() error {
