@@ -1,4 +1,4 @@
-# Stage 1: Install Node.js v16 and Puppeteer
+# Stage 1: Install Node.js v16
 FROM node:16 AS nodejs
 
 # Stage 2: Install Golang 1.20 and copy Node.js files
