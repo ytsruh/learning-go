@@ -1,7 +1,7 @@
 # Stage 1: Install Node.js v16
 FROM node:16 AS nodejs
 
-# Stage 2: Install Golang 1.20 and copy Node.js files
+# Stage 2: Install Golang 1.20
 FROM golang:1.20
 
 # Set the working directory
