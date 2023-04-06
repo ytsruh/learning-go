@@ -1,7 +1,7 @@
 package main
 
-import "learning/recover"
+import "learning/nodejs"
 
 func main() {
-	recover.RunRecover()
+	nodejs.RunNodeData()
 }

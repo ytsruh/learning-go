@@ -13,3 +13,4 @@ A monorepo of projects created whilst learning go
 7. Hacker News = Adding concurrency & caching to existing application
 8. PubSub = A simple PubSub server
 9. Recover = HTTP middleware to recover from a panic
+10. NodeJS = Example of running NodeJS scripts inside Go
