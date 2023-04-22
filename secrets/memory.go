@@ -2,7 +2,7 @@ package secrets
 
 import "errors"
 
-type Vault struct {
+type MemoryVault struct {
 	encodingKey string
 	keyValues   map[string]string
 }
@@ -14,7 +14,7 @@ func InMemory(encodingKey string) Vault {
 	}
 }
 
-func (v *Vault) Get(key string) (string, error) {
+func (v *MemoryVault) Get(key string) (string, error) {
 	hex, ok := v.keyValues[key]
 	if !ok {
 		return "", errors.New("secret: no value for that key.")
@@ -26,7 +26,7 @@ func (v *Vault) Get(key string) (string, error) {
 	return ret, nil
 }
 
-func (v *Vault) Set(key, value string) error {
+func (v *MemoryVault) Set(key, value string) error {
 	encryptedValue, err := Encrypt(v.encodingKey, value)
 	if err != nil {
 		return err
