@@ -1,7 +1,7 @@
 package main
 
-import "learning/secrets"
+import "learning/jwtauth"
 
 func main() {
-	secrets.RunCLI()
+	jwtauth.RunServer()
 }

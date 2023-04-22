@@ -8,20 +8,15 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-const SecretKey = "ewvfdjknl"
+func SetupCookieRoutes(app *fiber.App) {
 
-type CustomClaims struct {
-	User                 string `json:"user"`
-	jwt.RegisteredClaims `json:"claims"`
-}
+	cookieRoutes := app.Group("/cookie")
 
-func SetupRoutes(app *fiber.App) {
-
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
+	cookieRoutes.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("These are the cookie routes.")
 	})
 
-	app.Post("/register", func(c *fiber.Ctx) error {
+	cookieRoutes.Post("/register", func(c *fiber.Ctx) error {
 		var data map[string]string
 		if err := c.BodyParser(&data); err != nil {
 			return err
@@ -41,7 +36,7 @@ func SetupRoutes(app *fiber.App) {
 		return c.JSON(user)
 	})
 
-	app.Post("/login", func(c *fiber.Ctx) error {
+	cookieRoutes.Post("/login", func(c *fiber.Ctx) error {
 		var data map[string]string
 		if err := c.BodyParser(&data); err != nil {
 			return err
@@ -67,6 +62,7 @@ func SetupRoutes(app *fiber.App) {
 
 		claims := CustomClaims{
 			user.Email,
+			user.Id,
 			jwt.RegisteredClaims{
 				ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
 				Issuer:    "jwt-test",
@@ -100,7 +96,7 @@ func SetupRoutes(app *fiber.App) {
 		})
 	})
 
-	app.Get("/user", func(c *fiber.Ctx) error {
+	cookieRoutes.Get("/user", func(c *fiber.Ctx) error {
 		cookie := c.Cookies("jwt")
 
 		token, err := jwt.ParseWithClaims(cookie, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
@@ -130,7 +126,7 @@ func SetupRoutes(app *fiber.App) {
 
 	})
 
-	app.Get("/logout", func(c *fiber.Ctx) error {
+	cookieRoutes.Get("/logout", func(c *fiber.Ctx) error {
 		cookie := fiber.Cookie{
 			Name:    "jwt",
 			Value:   "",

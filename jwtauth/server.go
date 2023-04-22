@@ -14,7 +14,8 @@ func RunServer() {
 		AllowCredentials: true,
 	}))
 
-	SetupRoutes(app)
+	SetupCookieRoutes(app)
+	SetupTokenRoutes(app)
 
 	app.Listen(":3000")
 }
