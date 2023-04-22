@@ -7,8 +7,8 @@ type MemoryVault struct {
 	keyValues   map[string]string
 }
 
-func InMemory(encodingKey string) Vault {
-	return Vault{
+func InMemory(encodingKey string) MemoryVault {
+	return MemoryVault{
 		encodingKey: encodingKey,
 		keyValues:   make(map[string]string),
 	}
