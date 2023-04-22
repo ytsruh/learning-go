@@ -42,3 +42,7 @@ func RunVault() {
 	}
 	fmt.Println("Plain: ", plain)
 }
+
+func RunCLI() {
+	CLI.Execute()
+}

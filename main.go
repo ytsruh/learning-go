@@ -3,5 +3,5 @@ package main
 import "learning/secrets"
 
 func main() {
-	secrets.RunVault()
+	secrets.RunCLI()
 }
