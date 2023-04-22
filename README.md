@@ -14,3 +14,4 @@ A monorepo of projects created whilst learning go
 8. PubSub = A simple PubSub server
 9. Recover = HTTP middleware to recover from a panic
 10. NodeJS = Example of running NodeJS scripts inside Go
+11. Secrets = API & CLI for managing envinroment variables & secrets

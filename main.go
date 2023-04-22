@@ -1,7 +1,7 @@
 package main
 
-import "learning/nodejs"
+import "learning/secrets"
 
 func main() {
-	nodejs.RunNodeData()
+	secrets.RunInMemory()
 }
