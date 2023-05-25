@@ -1,6 +1,6 @@
 package main
 
-import "learning/jwtauth"
+import "learning/basics/jwtauth"
 
 func main() {
 	jwtauth.RunServer()

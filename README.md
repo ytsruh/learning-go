@@ -2,7 +2,7 @@
 
 A monorepo of projects created whilst learning go
 
-## Repositories
+## Basics
 
 1. Lessons = Code from book called "Sam's Teach Yourself Go"
 2. JWT Auth = Simple JWT auth server using Fiber
@@ -11,8 +11,12 @@ A monorepo of projects created whilst learning go
 5. Utility = Functions to normalise numbers or cipher string
 6. Reverse Proxy = A very simple reverse proxy using round robin selection
 7. Hacker News = Adding concurrency & caching to existing application
-8. PubSub = A simple PubSub server
-9. Recover = HTTP middleware to recover from a panic
-10. NodeJS = Example of running NodeJS scripts inside Go
-11. Secrets = API & CLI for managing envinroment variables & secrets
-12. Images = Creating images using Go
+8. Recover = HTTP middleware to recover from a panic
+9. NodeJS = Example of running NodeJS scripts inside Go
+10. Images = Creating images using Go
+
+## Projects
+
+1. PubSub = A simple PubSub server
+2. Secrets = API & CLI for managing envinroment variables & secrets
+3. Goly = A bitly clone built using Go & Postgres

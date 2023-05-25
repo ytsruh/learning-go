@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	hn "learning/hacker/client"
+	hn "learning/basics/hacker/client"
 )
 
 func RunOriginal() {

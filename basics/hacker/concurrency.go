@@ -7,12 +7,13 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"sort"
 	"time"
 
-	hn "learning/hacker/client"
+	hn "learning/basics/hacker/client"
 )
 
-func RunFirstAttempt() {
+func RunConcurrency() {
 	// parse flags
 	var port, numStories int
 	flag.IntVar(&port, "port", 3000, "the port to start the web server on")
@@ -21,16 +22,16 @@ func RunFirstAttempt() {
 
 	tpl := template.Must(template.ParseFiles("./hacker/index.html"))
 
-	http.HandleFunc("/", handlerFirst(numStories, tpl))
+	http.HandleFunc("/", handlerConcurrency(numStories, tpl))
 
 	// Start the server
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
 }
 
-func handlerFirst(numStories int, tpl *template.Template) http.HandlerFunc {
+func handlerConcurrency(numStories int, tpl *template.Template) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
-		stories, err := getTopStoriesFirst(numStories)
+		stories, err := getTopStoriesConcurrency(numStories)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -41,42 +42,50 @@ func handlerFirst(numStories int, tpl *template.Template) http.HandlerFunc {
 		}
 		err = tpl.Execute(w, data)
 		if err != nil {
-			http.Error(w, "failed to process the template", http.StatusInternalServerError)
+			http.Error(w, "Failed to process the template", http.StatusInternalServerError)
 			return
 		}
 	})
 }
 
-func getTopStoriesFirst(numStories int) ([]item, error) {
+func getTopStoriesConcurrency(numStories int) ([]item, error) {
 	var client hn.Client
 	ids, err := client.TopItems()
 	if err != nil {
 		return nil, errors.New("failed to load top stories")
 	}
-	var stories []item
-	for _, id := range ids {
-		type result struct {
-			item item
-			err  error
-		}
-		resultCh := make(chan result)
-		go func(id int) {
+
+	type result struct {
+		idx  int
+		item item
+		err  error
+	}
+	resultCh := make(chan result)
+	for i := 0; i < numStories; i++ {
+		go func(idx, id int) {
 			hnItem, err := client.GetItem(id)
 			if err != nil {
-				resultCh <- result{err: err}
+				resultCh <- result{idx: idx, err: err}
 			}
-			resultCh <- result{item: parseHNItem(hnItem)}
-		}(id)
+			resultCh <- result{idx: idx, item: parseHNItem(hnItem)}
+		}(i, ids[i])
+	}
 
-		res := <-resultCh
+	var results []result
+	for i := 0; i < numStories; i++ {
+		results = append(results, <-resultCh)
+	}
+	sort.Slice(results, func(i, j int) bool {
+		return results[i].idx < results[j].idx
+	})
+
+	var stories []item
+	for _, res := range results {
 		if res.err != nil {
 			continue
 		}
 		if isStoryLink(res.item) {
 			stories = append(stories, res.item)
-			if len(stories) >= numStories {
-				break
-			}
 		}
 	}
 	return stories, nil
