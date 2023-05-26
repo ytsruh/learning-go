@@ -1,7 +1,7 @@
 package main
 
-import "learning/basics/jwtauth"
+import "learning/projects/kanban"
 
 func main() {
-	jwtauth.RunServer()
+	kanban.Run()
 }
