@@ -21,3 +21,7 @@ A monorepo of projects created whilst learning go
 2. Secrets = API & CLI for managing envinroment variables & secrets
 3. Goly = A bitly clone built using Go & Postgres
 4. Kanban = Using charm.sh to build a TUI kanban board
+
+## Test with Go
+
+Collection of files from the 'Test with Go' course from Jon Calhoun
