@@ -1,7 +1,7 @@
 package stub
 
 import (
-	"github.com/joncalhoun/twg/suite"
+	"learning/test-with-go/suite"
 )
 
 type UserStore struct{}

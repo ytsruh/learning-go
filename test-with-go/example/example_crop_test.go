@@ -7,7 +7,7 @@ import (
 	// Needed for initialize side effect
 	_ "image/png"
 
-	"github.com/joncalhoun/twg/example"
+	"learning/test-with-go/example"
 )
 
 var file string = "this is not used"

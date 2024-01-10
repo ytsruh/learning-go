@@ -3,7 +3,7 @@ package suitetest
 import (
 	"testing"
 
-	"github.com/joncalhoun/twg/suite"
+	"learning/test-with-go/suite"
 )
 
 type UserStoreSuite struct {

@@ -1,10 +1,10 @@
-package main
+package demo
 
 import (
 	"encoding/json"
 	"fmt"
 
-	stripe "github.com/joncalhoun/twg/stripe/v1"
+	stripe "learning/test-with-go/stripe/v1"
 )
 
 func main() {

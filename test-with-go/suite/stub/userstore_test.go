@@ -3,9 +3,11 @@ package stub_test
 import (
 	"testing"
 
-	"github.com/joncalhoun/twg/suite"
-	"github.com/joncalhoun/twg/suite/stub"
-	"github.com/joncalhoun/twg/suite/suitetest"
+	"learning/test-with-go/suite"
+
+	"learning/test-with-go/suite/stub"
+
+	"learning/test-with-go/suite/suitetest"
 )
 
 var _ suite.UserStore = &stub.UserStore{}

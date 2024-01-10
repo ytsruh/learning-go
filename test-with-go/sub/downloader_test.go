@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"testing"
 
-	"github.com/joncalhoun/twg/sub"
+	"learning/test-with-go/sub"
 )
 
 func TestDemo(t *testing.T) {

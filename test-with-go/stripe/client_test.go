@@ -12,7 +12,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/joncalhoun/twg/stripe"
+	"learning/test-with-go/stripe"
 )
 
 var (

@@ -16,9 +16,9 @@ func (c *Context) Done() <-chan struct{} {
 	return c.doneCh
 }
 
-func (c *Context) Err() error {
+// func (c *Context) Err() error {
 
-}
+// }
 
 var contextWithTimeout = context.WithTimeout
 

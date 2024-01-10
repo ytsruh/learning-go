@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/joncalhoun/twg/stripe"
+	"learning/test-with-go/stripe"
 )
 
 var errorJSON = []byte(`{

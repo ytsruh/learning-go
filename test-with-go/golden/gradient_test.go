@@ -10,7 +10,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/joncalhoun/twg/golden"
+	"learning/test-with-go/golden"
 )
 
 var updateFlag bool

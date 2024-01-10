@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/joncalhoun/twg/math"
+	"learning/test-with-go/math"
 )
 
 func main() {

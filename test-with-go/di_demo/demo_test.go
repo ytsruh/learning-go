@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/joncalhoun/twg/di_demo"
+	"learning/test-with-go/di_demo"
 )
 
 type fakeLogger struct {

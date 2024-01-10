@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/joncalhoun/twg/logger"
+	"learning/test-with-go/logger"
 )
 
 type fakeLogger struct {

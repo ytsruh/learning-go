@@ -6,7 +6,7 @@ import (
 	"image/png"
 	"os"
 
-	"github.com/joncalhoun/twg/draw"
+	"learning/test-with-go/draw"
 )
 
 func main() {
