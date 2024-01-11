@@ -1,7 +1,7 @@
 package main
 
-import "learning/projects/kanban"
+import "learning/projects/redis"
 
 func main() {
-	kanban.Run()
+	redis.Run()
 }

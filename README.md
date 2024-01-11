@@ -21,6 +21,7 @@ A monorepo of projects created whilst learning go
 2. Secrets = API & CLI for managing envinroment variables & secrets
 3. Goly = A bitly clone built using Go & Postgres
 4. Kanban = Using charm.sh to build a TUI kanban board
+5. Redis = Building a simple implementation of Redis compatible with the official CLI
 
 ## Test with Go
 
