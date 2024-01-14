@@ -1,7 +1,7 @@
 package main
 
-import "learning/projects/redis"
+import "learning/interpreter"
 
 func main() {
-	redis.Run()
+	interpreter.Run()
 }

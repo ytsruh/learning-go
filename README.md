@@ -26,3 +26,7 @@ A monorepo of projects created whilst learning go
 ## Test with Go
 
 Collection of files from the 'Test with Go' course from Jon Calhoun
+
+## Interpreter
+
+Code & files from the eBook "Writing an Interpreter in Go" by Thorsten Ball
