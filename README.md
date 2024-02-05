@@ -30,3 +30,7 @@ Collection of files from the 'Test with Go' course from Jon Calhoun
 ## Interpreter
 
 Code & files from the eBook "Writing an Interpreter in Go" by Thorsten Ball
+
+## End to end
+
+An example of adding end to end tests to a Go/Echo API with JWT auth
