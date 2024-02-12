@@ -1,8 +1,8 @@
-package goly
+package main
 
 import (
-	"learning/projects/goly/model"
-	"learning/projects/goly/server"
+	"ytsruh.com/goly/model"
+	"ytsruh.com/goly/server"
 
 	"github.com/joho/godotenv"
 )

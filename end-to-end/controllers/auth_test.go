@@ -12,7 +12,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"golang.org/x/crypto/bcrypt"
-	"homethings.ytsruh.com/lib"
+	"ytsruh.com/endtoend/lib"
 )
 
 func init() {

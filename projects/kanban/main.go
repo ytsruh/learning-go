@@ -1,4 +1,4 @@
-package kanban
+package main
 
 import (
 	"log"

@@ -9,7 +9,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"homethings.ytsruh.com/models"
+	"ytsruh.com/endtoend/models"
 )
 
 var DBConn *gorm.DB
@@ -34,7 +34,7 @@ func InitDB() *gorm.DB {
 		panic(err)
 	}
 
-	DBConn.AutoMigrate(&models.Account{}, &models.User{}, &models.Feedback{}, &models.Book{}, &models.Document{})
+	DBConn.AutoMigrate(&models.Account{}, &models.User{}, &models.Feedback{})
 
 	return DBConn
 }

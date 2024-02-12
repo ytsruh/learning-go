@@ -5,7 +5,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
-	"homethings.ytsruh.com/models"
+	"ytsruh.com/endtoend/models"
 )
 
 type UpdateFeedbackInput struct {

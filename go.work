@@ -1,0 +1,17 @@
+go 1.22.0
+
+use ./interpreter
+
+use ./basics
+
+use ./end-to-end
+
+use ./projects/goly
+
+use ./projects/kanban
+
+use ./projects/pubsub
+
+use ./projects/redis
+
+use ./projects/secrets

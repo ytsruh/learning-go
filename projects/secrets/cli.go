@@ -1,11 +1,12 @@
-package secrets
+package main
 
 import (
 	"path/filepath"
 
-	"github.com/spf13/cobra"
 	"fmt"
+
 	homedir "github.com/mitchellh/go-homedir"
+	"github.com/spf13/cobra"
 )
 
 var CLI = &cobra.Command{

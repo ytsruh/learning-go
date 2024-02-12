@@ -1,8 +1,6 @@
 package server
 
 import (
-	"learning/projects/goly/model"
-	"learning/projects/goly/utils"
 	"log"
 	"os"
 	"os/signal"
@@ -10,6 +8,9 @@ import (
 	"strings"
 	"syscall"
 	"time"
+
+	"ytsruh.com/goly/model"
+	"ytsruh.com/goly/utils"
 
 	"github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"

@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"homethings.ytsruh.com/models"
+	"ytsruh.com/endtoend/models"
 )
 
 type UpdateProfileInput struct {

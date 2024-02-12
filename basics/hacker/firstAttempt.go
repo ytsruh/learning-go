@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	hn "learning/basics/hacker/client"
+	hn "ytsruh.com/basics/hacker/client"
 )
 
 func RunFirstAttempt() {

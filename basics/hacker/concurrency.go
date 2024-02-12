@@ -10,7 +10,7 @@ import (
 	"sort"
 	"time"
 
-	hn "learning/basics/hacker/client"
+	hn "ytsruh.com/basics/hacker/client"
 )
 
 func RunConcurrency() {

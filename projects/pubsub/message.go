@@ -1,4 +1,4 @@
-package pubsub
+package main
 
 type Message struct {
 	topic string

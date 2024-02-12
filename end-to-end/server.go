@@ -12,8 +12,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"gorm.io/gorm"
-	"homethings.ytsruh.com/controllers"
-	"homethings.ytsruh.com/lib"
+	"ytsruh.com/endtoend/controllers"
+	"ytsruh.com/endtoend/lib"
 )
 
 func main() {

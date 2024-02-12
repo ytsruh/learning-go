@@ -1,13 +1,14 @@
-package interpreter
+package main
 
 import (
 	"fmt"
-	"learning/interpreter/repl"
 	"os"
 	"os/user"
+
+	"ytsruh.com/interpreter/repl"
 )
 
-func Run() {
+func main() {
 	user, err := user.Current()
 	if err != nil {
 		panic(err)

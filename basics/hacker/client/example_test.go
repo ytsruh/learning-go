@@ -6,7 +6,7 @@ package hn_test
 import (
 	"fmt"
 
-	hn "learning/basics/hacker/client"
+	hn "ytsruh.com/basics/hacker/client"
 )
 
 func ExampleClient() {
