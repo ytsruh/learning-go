@@ -15,3 +15,5 @@ use ./projects/pubsub
 use ./projects/redis
 
 use ./projects/secrets
+
+use ./projects/text-search

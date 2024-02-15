@@ -22,6 +22,7 @@ A monorepo of projects created whilst learning go
 3. Goly = A bitly clone built using Go & Postgres
 4. Kanban = Using charm.sh to build a TUI kanban board
 5. Redis = Building a simple implementation of Redis compatible with the official CLI
+6. Text Search = A full text search index implementation
 
 ## Test with Go
 
