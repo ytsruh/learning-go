@@ -23,6 +23,7 @@ A monorepo of projects created whilst learning go
 4. Kanban = Using charm.sh to build a TUI kanban board
 5. Redis = Building a simple implementation of Redis compatible with the official CLI
 6. Text Search = A full text search index implementation
+7. SaaS = Basics of a full SaaS implementation using standard lib
 
 ## Test with Go
 

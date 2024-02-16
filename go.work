@@ -17,3 +17,5 @@ use ./projects/redis
 use ./projects/secrets
 
 use ./projects/text-search
+
+use ./projects/saas
