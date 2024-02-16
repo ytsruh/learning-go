@@ -19,3 +19,5 @@ use ./projects/secrets
 use ./projects/text-search
 
 use ./projects/saas
+
+use ./projects/analytics

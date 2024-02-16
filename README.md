@@ -24,6 +24,7 @@ A monorepo of projects created whilst learning go
 5. Redis = Building a simple implementation of Redis compatible with the official CLI
 6. Text Search = A full text search index implementation
 7. SaaS = Basics of a full SaaS implementation using standard lib
+8. Analytics = A simple copy of Google analytics
 
 ## Test with Go
 
