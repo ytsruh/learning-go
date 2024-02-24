@@ -56,6 +56,10 @@ func ipFromRequest(headers []string, r *http.Request) (net.IP, error) {
 		remoteIP = host
 	}
 
+	if len(forceIP) > 0 {
+		remoteIP = forceIP
+	}
+
 	ip := net.ParseIP(remoteIP)
 	if ip == nil {
 		return nil, fmt.Errorf("could not parse IP: %s", remoteIP)
