@@ -49,7 +49,21 @@ func track(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ua := useragent.Parse(trk.Action.UserAgent)
-	if err := events.Add(trk, ua); err != nil {
+
+	headers := []string{"X-Forward-For", "X-Real-IP"}
+	ip, err := ipFromRequest(headers, r)
+	if err != nil {
+		fmt.Println("error getting IP: ", err)
+		return
+	}
+
+	geoInfo, err := getGeoInfo(ip.String())
+	if err != nil {
+		fmt.Println("error getting geo info: ", err)
+		return
+	}
+
+	if err := events.Add(trk, ua, geoInfo); err != nil {
 		fmt.Println(err)
 	}
 }
