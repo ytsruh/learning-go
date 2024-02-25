@@ -1,4 +1,4 @@
-package main
+package gotracker
 
 import (
 	"context"
@@ -12,6 +12,44 @@ import (
 	"github.com/ClickHouse/clickhouse-go/v2/lib/driver"
 	"github.com/mileusna/useragent"
 )
+
+type QueryType int
+
+const (
+	QueryPageViews QueryType = iota
+	QueryPageViewList
+	QueryUniqueVisitors
+	QueryReferrerHost
+	QueryReferrer
+	QueryBrowsers
+	QueryOSes
+	QueryCountry
+)
+
+type TrackingData struct {
+	Type          string `json:"type"`
+	Identity      string `json:"identity"`
+	UserAgent     string `json:"ua"`
+	Event         string `json:"event"`
+	Category      string `json:"category"`
+	Referrer      string `json:"referrer"`
+	ReferrerHost  string
+	IsTouchDevice bool `json:"isTouchDevice"`
+	OccuredAt     uint32
+}
+
+type Tracking struct {
+	SiteID string       `json:"site_id"`
+	Action TrackingData `json:"tracking"`
+}
+
+type MetricData struct {
+	What   QueryType `json:"what"`
+	SiteID string    `json:"siteId"`
+	Start  uint32    `json:"start"`
+	End    uint32    `json:"end"`
+	Extra  string    `json:"extra"`
+}
 
 type qdata struct {
 	trk Tracking
@@ -104,6 +142,8 @@ func (e *Events) Add(trk Tracking, ua useragent.UserAgent, geo *GeoInfo) {
 }
 
 func (e *Events) Run() {
+	e.ch = make(chan qdata)
+
 	timer := time.NewTimer(time.Second * 10)
 	for {
 		select {
@@ -175,7 +215,7 @@ func (e *Events) Insert() error {
 	for _, qd := range tmp {
 		err := batch.Append(
 			qd.trk.SiteID,
-			nowToInt(),
+			TimeToInt(time.Now()),
 			qd.trk.Action.Type,
 			qd.trk.Action.Identity,
 			qd.trk.Action.Event,
@@ -198,12 +238,100 @@ func (e *Events) Insert() error {
 	return batch.Send()
 }
 
-func nowToInt() uint32 {
-	now := time.Now().Format("20060102")
+func TimeToInt(d time.Time) uint32 {
+	now := d.Format("20060102")
 	i, err := strconv.ParseInt(now, 10, 32)
 	// this should never happen
 	if err != nil {
 		log.Fatal(err)
 	}
 	return uint32(i)
+}
+
+type Metric struct {
+	OccuredAt uint32 `json:"occuredAt"`
+	Value     string `json:"value"`
+	Count     uint64 `json:"count"`
+}
+
+func (e *Events) GetStats(data MetricData) ([]Metric, error) {
+	qry := e.GenQuery(data)
+
+	rows, err := e.DB.Query(
+		context.Background(),
+		qry,
+		data.SiteID,
+		data.Start,
+		data.End,
+		data.Extra,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	var metrics []Metric
+	for rows.Next() {
+		var m Metric
+		if err := rows.Scan(&m.OccuredAt, &m.Value, &m.Count); err != nil {
+			return nil, err
+		}
+
+		metrics = append(metrics, m)
+	}
+
+	return metrics, rows.Err()
+}
+
+func (e *Events) GenQuery(data MetricData) string {
+	field := ""
+	daily := true
+	where := "AND $4 = $4"
+	switch data.What {
+	case QueryPageViews:
+		field = "event"
+	case QueryPageViewList:
+		field = "event"
+		daily = false
+	case QueryUniqueVisitors:
+		field = "user_id"
+	case QueryReferrerHost:
+		field = "referrer_domain"
+		daily = false
+	case QueryReferrer:
+		field = "referrer"
+		where = "AND referrer_domain = $3 "
+		daily = false
+	case QueryBrowsers:
+		field = "browser_name"
+		daily = false
+	case QueryOSes:
+		field = "os_name"
+		daily = false
+	case QueryCountry:
+		field = "country"
+		daily = false
+	}
+
+	if daily {
+		return fmt.Sprintf(`
+		SELECT occured_at, %s, COUNT(*)
+		FROM events
+		WHERE site_id = $1
+		AND category = 'Page views'
+		GROUP BY occured_at, %s
+		HAVING occured_at BETWEEN $2 AND $3
+		ORDER BY 3 DESC;
+	`, field, field)
+	}
+
+	return fmt.Sprintf(`
+		SELECT toUInt32(0), %s, COUNT(*)
+		FROM events
+		WHERE site_id = $1
+		AND occured_at BETWEEN $2 AND $3
+		AND category = 'Page views'
+		%s 
+		GROUP BY %s
+		ORDER BY 3 DESC;
+	`, field, where, field)
 }

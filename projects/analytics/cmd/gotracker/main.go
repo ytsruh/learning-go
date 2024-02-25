@@ -9,30 +9,15 @@ import (
 	"net/http"
 	"net/url"
 
+	"ytsruh.com/analytics/gotracker"
+
 	"github.com/mileusna/useragent"
 )
 
 var (
-	forceIP         = ""
-	events  *Events = &Events{ch: make(chan qdata)}
+	forceIP                   = ""
+	events  *gotracker.Events = &gotracker.Events{}
 )
-
-type TrackingData struct {
-	Type          string `json:"type"`
-	Identity      string `json:"identity"`
-	UserAgent     string `json:"ua"`
-	Event         string `json:"event"`
-	Category      string `json:"category"`
-	Referrer      string `json:"referrer"`
-	ReferrerHost  string
-	IsTouchDevice bool `json:"isTouchDevice"`
-	OccuredAt     uint32
-}
-
-type Tracking struct {
-	SiteID string       `json:"site_id"`
-	Action TrackingData `json:"tracking"`
-}
 
 func main() {
 	flag.StringVar(&forceIP, "ip", "", "force IP for request, useful in local")
@@ -47,6 +32,7 @@ func main() {
 	go events.Run()
 
 	http.HandleFunc("/track", track)
+	http.HandleFunc("/stats", stats)
 	http.ListenAndServe(":9876", nil)
 }
 
@@ -62,13 +48,13 @@ func track(w http.ResponseWriter, r *http.Request) {
 	ua := useragent.Parse(trk.Action.UserAgent)
 
 	headers := []string{"X-Forward-For", "X-Real-IP"}
-	ip, err := ipFromRequest(headers, r)
+	ip, err := gotracker.IPFromRequest(headers, r, forceIP)
 	if err != nil {
 		fmt.Println("error getting IP: ", err)
 		return
 	}
 
-	geoInfo, err := getGeoInfo(ip.String())
+	geoInfo, err := gotracker.GetGeoInfo(ip.String())
 	if err != nil {
 		fmt.Println("error getting geo info: ", err)
 		return
@@ -84,7 +70,7 @@ func track(w http.ResponseWriter, r *http.Request) {
 	go events.Add(trk, ua, geoInfo)
 }
 
-func decodeData(s string) (data Tracking, err error) {
+func decodeData(s string) (data gotracker.Tracking, err error) {
 	b, err := base64.StdEncoding.DecodeString(s)
 	if err != nil {
 		return
@@ -92,4 +78,28 @@ func decodeData(s string) (data Tracking, err error) {
 
 	err = json.Unmarshal(b, &data)
 	return
+}
+
+func stats(w http.ResponseWriter, r *http.Request) {
+	var data gotracker.MetricData
+	if err := json.NewDecoder(r.Body).Decode(&data); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+
+	metrics, err := events.GetStats(data)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	b, err := json.Marshal(metrics)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Write(b)
 }
