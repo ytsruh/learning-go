@@ -1,0 +1,15 @@
+{
+  "name": "analytics",
+  "scripts": {
+    "build": "rm -rf static/track && esbuild --bundle --minify --global-name=_goTracker --format=iife --outfile=static/track.js src/track.ts",
+    "start": "http-server"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
