@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"ytsruh.com/analytics/gotracker"
+	gotracker "ytsruh.com/analytics"
 
 	"github.com/mileusna/useragent"
 )

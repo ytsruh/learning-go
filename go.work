@@ -21,3 +21,5 @@ use ./projects/text-search
 use ./projects/saas
 
 use ./projects/analytics
+
+use ./projects/sqlite-testing

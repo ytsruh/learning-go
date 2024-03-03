@@ -8,7 +8,7 @@ import (
 	"sort"
 	"time"
 
-	"ytsruh.com/analytics/gotracker"
+	gotracker "ytsruh.com/analytics"
 
 	ui "github.com/gizak/termui/v3"
 	"github.com/gizak/termui/v3/widgets"
@@ -19,13 +19,13 @@ var (
 	start  int64
 	end    int64
 
-	what           gotracker.QueryType = gotracker.QueryPageViews
-	pos            int                 = 0
-	row            int
-	current        []gotracker.Metric
-	currentTitle   string
-	extraSelection int
-	dateRangeMode  int = 0
+	what         gotracker.QueryType = gotracker.QueryPageViews
+	pos          int                 = 0
+	row          int
+	current      []gotracker.Metric
+	currentTitle string
+	//extraSelection int
+	dateRangeMode int = 0
 )
 
 func main() {

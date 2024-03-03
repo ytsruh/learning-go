@@ -1,8 +1,8 @@
 tmp
-.db
+*.db
 node_modules
-.DS_Store
-.secrets
+*.DS_Store
+*.secrets
 
 # Ignore the large data files
 enwiki-latest-abstract1.*

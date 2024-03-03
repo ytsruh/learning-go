@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 
-	"ytsruh.com/analytics/gotracker"
+	gotracker "ytsruh.com/analytics"
 )
 
 func getMetric(what gotracker.QueryType) ([]gotracker.Metric, error) {
