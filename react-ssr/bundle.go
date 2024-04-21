@@ -4,7 +4,7 @@ import esbuild "github.com/evanw/esbuild/pkg/api"
 
 func ServerBundle() string {
 	result := esbuild.Build(esbuild.BuildOptions{
-		EntryPoints: []string{"./client/serverEntry.jsx"},
+		EntryPoints: []string{"./client/serverEntry.tsx"},
 		Bundle:      true,
 		Write:       false,
 		Outdir:      "./dist",
@@ -21,6 +21,16 @@ func ServerBundle() string {
 	})
 	script := string(result.OutputFiles[0].Contents)
 	return script
+}
+
+func ClientBundle() string {
+	clientResult := esbuild.Build(esbuild.BuildOptions{
+		EntryPoints: []string{"./client/clientEntry.tsx"},
+		Bundle:      true,
+		Write:       false,
+	})
+	clientBundleString := string(clientResult.OutputFiles[0].Contents)
+	return clientBundleString
 }
 
 // [Yaffle/TextEncoderTextDecoder.js](https://gist.github.com/Yaffle/5458286)

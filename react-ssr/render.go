@@ -13,9 +13,11 @@ import (
 type SSRPage struct {
 	RenderedContent template.HTML
 	ClientBundle    template.JS
+	Props           template.JS
 }
 
 func (ssr *SSRPage) Render(writer http.ResponseWriter) error {
+	ssr.ClientBundle = template.JS(ClientBundle())
 	tmpl, err := template.New("page").Parse(htmlTemplate)
 	if err != nil {
 		log.Fatal("Error parsing template:", err)
@@ -42,6 +44,7 @@ const htmlTemplate = `
 		<script type="module">
 		{{ .ClientBundle }}
 		</script>
+		<script>window.PROPS = {{ .Props }};</script>
 	</body>
 	</html>
 `

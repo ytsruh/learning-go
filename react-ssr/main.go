@@ -17,7 +17,7 @@ func main() {
 		html := RenderHTML(backBundle, props)
 		page := SSRPage{
 			RenderedContent: template.HTML(html),
-			ClientBundle:    template.JS(""),
+			Props:           template.JS(props),
 		}
 		err := page.Render(w)
 		if err != nil {
