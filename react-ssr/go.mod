@@ -1,6 +1,6 @@
 module ytsruh.com/react-ssr
 
-go 1.22.0
+go 1.22
 
 require (
 	github.com/evanw/esbuild v0.20.2
