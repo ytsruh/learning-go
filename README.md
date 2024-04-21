@@ -38,3 +38,7 @@ Code & files from the eBook "Writing an Interpreter in Go" by Thorsten Ball
 ## End to end
 
 An example of adding end to end tests to a Go/Echo API with JWT auth
+
+## React-SSR
+
+A POC of rendering Raect on a Golang server
