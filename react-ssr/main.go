@@ -25,6 +25,6 @@ func main() {
 			w.Write([]byte(err.Error()))
 		}
 	})
-	fmt.Println("Server is running at http://localhost:3000")
-	log.Fatal(http.ListenAndServe(":3000", nil))
+	fmt.Println("Server is running at http://localhost:4000")
+	log.Fatal(http.ListenAndServe(":4000", nil))
 }

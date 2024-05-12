@@ -25,3 +25,5 @@ use ./projects/analytics
 use ./projects/sqlite-testing
 
 use ./react-ssr
+
+use ./projects/frankenui

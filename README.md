@@ -26,6 +26,7 @@ A monorepo of projects created whilst learning go
 7. SaaS = Basics of a full SaaS implementation using standard lib
 8. Analytics = A simple copy of Google analytics
 9. Sqlite Testing = Write, Read & get backup of SQLite using Docker & CGO
+10. Franken UI - Trying out Franken UI with Echo
 
 ## Test with Go
 
